@@ -1,3 +1,5 @@
+const Medico = require('./medico')
+
 module.exports = (sequelize, Sequelize) => {
     const Especialidade = sequelize.define('especialidades', {
         nomeEspecialidade: {
