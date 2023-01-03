@@ -8,5 +8,6 @@ db.Sequelize = Sequelize
 db.sequelize = database
 
 db.especialidade = require('../models/especialidade')(database, Sequelize)
+db.medico = require('../models/medico')(database, Sequelize)
 
 module.exports = db

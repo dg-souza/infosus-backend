@@ -15,6 +15,7 @@ db.sequelize.sync()
     })
 
 require('./routes/especialidadeRoutes')(app)
+require('./routes/medicoRoutes')(app)
 
 app.listen(port, () => {
     console.log('Servidor rodando na porta', port)
