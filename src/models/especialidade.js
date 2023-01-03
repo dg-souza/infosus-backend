@@ -1,22 +1,13 @@
-const Sequelize = require('sequelize')
-const database = require('../db/connection')
-
-const Especialidade = database.define('especialidades', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+module.exports = (sequelize, Sequelize) => {
+    const Especialidade = sequelize.define('especialidades', {
+        nomeEspecialidade: {
+            type: Sequelize.STRING,
+            allowNull: false
+        }
     },
-    nomeEspecialidade: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-},
     {
         timestamps: false
-    }
-)
+    })
 
-Especialidade.sync()
-
-module.exports = Especialidade
+    return Especialidade
+}

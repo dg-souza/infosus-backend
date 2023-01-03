@@ -1,13 +1,47 @@
-const express = require('express')
-const router = express.Router()
-const { findAll, create } = require('../services/especialidade')
+const db = require('../db/connection')
+const Especialidade = db.especialidade
+const Op = db.Sequelize.Op
 
-router.get('/pesquisar', async (req, res) => {
-    await findAll(req, res)
-})
+exports.create = async (req, res) => {
+    await Especialidade.create({
+        nomeEspecialidade: req.body.nomeEspecialidade
+    }).then(() => {
+        res.status(201).end()
+    }).catch(() => {
+        res.status(500)
+    })
+}
 
-router.post('/incluir', async (req, res) => {
-    await create(req, res)
-})
+exports.findAll = async (req, res) => {
+    await Especialidade.findAll()
+        .then(data => {
+            res.send(data)
+        })
+}
 
-module.exports = router
+exports.findOne = async (req, res) => {
+    await Especialidade.findByPk(req.params.id)
+        .then(data => {
+            res.send(data)
+        })
+}
+
+exports.update = async (req, res) => {
+    await Especialidade.update(req.body, {
+        where: { id: req.params.id }
+    }).then(num => {
+        if(num == 1) {
+            res.status(201).end()
+        }
+    })
+}
+
+exports.delete = async (req, res) => {
+    await Especialidade.destroy({
+        where: { id: req.params.id }
+    }).then(num => {
+        if(num == 1) {
+            res.status(201).end()
+        }
+    })
+}
