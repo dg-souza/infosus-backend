@@ -12,16 +12,20 @@ module.exports = (sequelize, Sequelize) => {
         },
         urlFoto: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
         idEspecialidade: {
             type: Sequelize.INTEGER,
             allowNull: false
-        }
+        },
+        idHospital: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
     },
-    {
-        timestamps: false
-    })
+        {
+            timestamps: false
+        })
 
     return Medico
 }
